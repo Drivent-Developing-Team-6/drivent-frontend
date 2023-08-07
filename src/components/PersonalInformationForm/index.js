@@ -22,6 +22,7 @@ import { InputWrapper } from './InputWrapper';
 import { ErrorMsg } from './ErrorMsg';
 import { ufList } from './ufList';
 import FormValidations from './FormValidations';
+import Link from '../Link';
 
 dayjs.extend(CustomParseFormat);
 
@@ -59,7 +60,9 @@ export default function PersonalInformationForm() {
       };
 
       try {
+        console.log(newData)
         await saveEnrollment(newData);
+        console.log('uhuuul!!!!')
         toast('Informações salvas com sucesso!');
       } catch (err) {
         toast('Não foi possível salvar suas informações!');
@@ -264,7 +267,7 @@ export default function PersonalInformationForm() {
           </InputWrapper>
           
           <SubmitContainer>
-            <Button type="submit" disabled={dynamicInputIsLoading || saveEnrollmentLoading}>
+            <Button type="submit" disabled={dynamicInputIsLoading || saveEnrollmentLoading} >
               Salvar
             </Button>
           </SubmitContainer>
