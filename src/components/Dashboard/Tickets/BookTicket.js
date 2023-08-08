@@ -3,5 +3,5 @@ export default function BookTicket({ setTicketChosen }) {
     <>
       {/* TODO: book ticket */}
     </>
-  )
+  );
 }

@@ -60,9 +60,9 @@ export default function PersonalInformationForm() {
       };
 
       try {
-        console.log(newData)
+        console.log(newData);
         await saveEnrollment(newData);
-        console.log('uhuuul!!!!')
+        console.log('uhuuul!!!!');
         toast('Informações salvas com sucesso!');
       } catch (err) {
         toast('Não foi possível salvar suas informações!');

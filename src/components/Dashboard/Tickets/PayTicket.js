@@ -1,7 +1,7 @@
 export default function PayTicket() {
-    return (
-        <>
-            {/* TODO: payment */}
-        </>
-    )
+  return (
+    <>
+      {/* TODO: payment */}
+    </>
+  );
 }

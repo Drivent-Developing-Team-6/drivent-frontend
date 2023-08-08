@@ -1,34 +1,30 @@
-import styled from "styled-components";
-import React, { useState } from "react";
-import { AuthContext } from "../../../contexts/enrolmentContext";
+import styled from 'styled-components';
+import React, { useState } from 'react';
+import { AuthContext } from '../../../contexts/enrolmentContext';
 
 export default function Payment() {
+  const { enroll, setEnroll } = React.useContext(AuthContext);
 
-  const { enroll, setEnroll } = React.useContext(AuthContext)
+  const [ticket, setTicket]= useState('');
+  const [choosedticket, setChoosedticket]=useState(false);
+  const [ticketValue, setTicketValue] =useState('');
+  const [checkEnrollment] = useState(false);
+  const[review, setReview]=useState(false);
 
-
-  const [ticket,setTicket]= useState('')
-  const [choosedticket,setChoosedticket]=useState(false)
-  const [ticketValue,setTicketValue] =useState('')
-  const [checkEnrollment] = useState(false)
-  const[review,setReview]=useState(false)
-
-  function presentialTicket(){
-    setChoosedticket(true)
-    setTicket('presential')
-    setTicketValue("250")
+  function presentialTicket() {
+    setChoosedticket(true);
+    setTicket('presential');
+    setTicketValue('250');
   }
 
-  function onlineTicket(){
-    setChoosedticket(true)
-    setTicket('online')
-    setTicketValue('100')
-
+  function onlineTicket() {
+    setChoosedticket(true);
+    setTicket('online');
+    setTicketValue('100');
   }
-  function checkTicket(){
-    setReview(true)
+  function checkTicket() {
+    setReview(true);
   }
-
 
   return (
     <Containner>
@@ -37,25 +33,25 @@ export default function Payment() {
         <h1>ingresso e pagamento</h1>
         <p>escolha o tipo de ingresso:</p>
         <div>
-          <button className="presential" onClick={()=>{presentialTicket()}}>
+          <button className="presential" onClick={() => {presentialTicket();}}>
             presencial
           </button>
-          <button className="online" onClick={()=>{onlineTicket()}}>
+          <button className="online" onClick={() => {onlineTicket();}}>
             online
           </button>
 
         </div>
         {choosedticket? <>
-         <p>fechado, o total ficou em R${ticketValue}. Agora é só confirmar:</p>
-        <button onClick={()=>{checkTicket()}}>
+          <p>fechado, o total ficou em R${ticketValue}. Agora é só confirmar:</p>
+          <button onClick={() => {checkTicket();}}>
           reservar ingresso
-        </button>
+          </button>
         </>
-        :''}
+          :''}
       </>}
 
     </Containner>
-  )
+  );
 }
 
 const Containner = styled.div`
@@ -112,4 +108,4 @@ div2{
 display: flex;
 
 
-`
+`;
