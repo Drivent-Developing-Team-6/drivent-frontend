@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import CustomParseFormat from 'dayjs/plugin/customParseFormat';
 import { getHotels } from '../../services/hotelApi';
+import UserContext from '../../contexts/UserContext';
+import { getPersonalInformations } from '../../services/enrollmentApi';
+import useToken from '../../hooks/useToken';
 
 dayjs.extend(CustomParseFormat);
 
 export default function PersonalInformationForm() {
-  const userId = 2;
+  const token = useToken();
+  
+  const [showHotels, setShowHoteis] = useState(false);
+  const { userId } = useContext(UserContext);
   const [selecionados, setSelecionados] = useState([]);
   const [hoteis, setHoteis] = useState([
     {
@@ -62,8 +68,17 @@ export default function PersonalInformationForm() {
   ]);
 
   const [qtdsSelecionados, SetQtds] = useState([]);
+  async function checarUser(token) {
+    try {
+      const enrollment = await getPersonalInformations(token);
+      if (enrollment) setShowHoteis(true);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
+    checarUser(token);
     listarHoteis(userId);
   }, []);
 
@@ -111,22 +126,27 @@ export default function PersonalInformationForm() {
   };
 
   return (
-    <>
+    <Container>
       <StyledTypography variant="h4">Escolha de hotel e quarto</StyledTypography>
-      <StyledTypography2>Primeiro, escolha seu hotel</StyledTypography2>
-      <ListaHoteis>
-        {hoteis.map(disponiveis => (            
-          <BoxHotel onClick={() => selecionarAssento(disponiveis.id)} background={ (selecionados.includes(disponiveis.id) ?  '#FFEED2':'#EBEBEB')}>
-            <ImagemHotel>{disponiveis.image}</ImagemHotel>
-            <NomeHotel>{disponiveis.name}</NomeHotel>
-            <InfoHotel>Tipos de acomodação:</InfoHotel>
-            <DadoHotel>Single e Double</DadoHotel>
-            <InfoHotel>Vagas Disponíveis:</InfoHotel>
-            <DadoHotel>103</DadoHotel>    
-          </BoxHotel>      
-        ))}
-      </ListaHoteis>
-      
+      {showHotels ?
+        <>  
+          <StyledTypography2>Primeiro, escolha seu hotel</StyledTypography2>
+          <ListaHoteis>
+            {hoteis.map(disponiveis => (            
+              <BoxHotel onClick={() => selecionarAssento(disponiveis.id)} background={ (selecionados.includes(disponiveis.id) ?  '#FFEED2':'#EBEBEB')}>
+                <ImagemHotel>{disponiveis.image}</ImagemHotel>
+                <NomeHotel>{disponiveis.name}</NomeHotel>
+                <InfoHotel>Tipos de acomodação:</InfoHotel>
+                <DadoHotel>Single e Double</DadoHotel>
+                <InfoHotel>Vagas Disponíveis:</InfoHotel>
+                <DadoHotel>103</DadoHotel>    
+              </BoxHotel>      
+            ))}
+          </ListaHoteis>
+        </>  : 
+        <ErroPayment><h2>Você precisa ter confirmado pagamento antes
+        de fazer a escolha de hospedagem</h2></ErroPayment>
+      }
       {selecionados.length > 0 ? (
         <SelecionouHotel>
           <StyledTypography2>Ótima pedida! Agora escolha seu quarto:</StyledTypography2>
@@ -147,11 +167,18 @@ export default function PersonalInformationForm() {
             ))}
           </Quartos>
         </SelecionouHotel>
-      ) : null }
-    </>
+      ) : null}  
+          
+    </Container>
   );
 }
 
+const Container = styled.div`
+width: 100%;
+height: 100vh;
+display:flex;
+flex-direction: column;
+`;
 const StyledTypography = styled(Typography)`
   margin-bottom: 20px!important;
 `;
@@ -206,6 +233,19 @@ const DadoHotel = styled(Typography)`
   font-weight: 400!important;
   margin-left:14px!important;
   margin-bottom:14px!important;
+`;
+
+const ErroPayment = styled.div`
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    color: #8E8E8E;
+    font-size: 20px;
+    font-weight: 400;
+  }
 `;
 
 const SelecionouHotel = styled.div`

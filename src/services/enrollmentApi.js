@@ -19,4 +19,4 @@ export async function getPersonalInformations(token) {
 
   return response.data;
 }
-//
+
