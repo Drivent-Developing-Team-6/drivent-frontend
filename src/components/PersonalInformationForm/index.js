@@ -67,9 +67,13 @@ export default function PersonalInformationForm() {
       };
 
       try {
-        console.log(newData)
+        console.log(newData);
         await saveEnrollment(newData);
+<<<<<<< HEAD
         setEnroll(true)
+=======
+        console.log('uhuuul!!!!');
+>>>>>>> 5736826c80d2f0aa9bdbaf5ac69c7c0cf5bfa750
         toast('Informações salvas com sucesso!');
        
       } catch (err) {

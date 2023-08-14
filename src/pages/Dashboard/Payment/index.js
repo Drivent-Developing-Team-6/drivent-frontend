@@ -22,6 +22,7 @@ export default function Payment() {
 
   )
 }
+
 const Containner = styled.div`
 width: 100%;
 height: 100%;
