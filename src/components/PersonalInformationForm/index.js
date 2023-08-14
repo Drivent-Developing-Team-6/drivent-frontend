@@ -1,4 +1,4 @@
-import { useState, useEffect,useContext} from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import DateFnsUtils from '@date-io/date-fns';
 import Typography from '@material-ui/core/Typography';
@@ -25,14 +25,10 @@ import FormValidations from './FormValidations';
 import Link from '../Link';
 import EnrollContext from '../../contexts/enrolmentContext';
 
-
-
 dayjs.extend(CustomParseFormat);
 
 export default function PersonalInformationForm() {
-  
-  const { setEnroll } =useContext(EnrollContext)
-  
+  const { setEnroll } =useContext(EnrollContext);
 
   const [dynamicInputIsLoading, setDynamicInputIsLoading] = useState(false);
   const { getCep } = useCep();
@@ -69,13 +65,8 @@ export default function PersonalInformationForm() {
       try {
         console.log(newData);
         await saveEnrollment(newData);
-<<<<<<< HEAD
-        setEnroll(true)
-=======
-        console.log('uhuuul!!!!');
->>>>>>> 5736826c80d2f0aa9bdbaf5ac69c7c0cf5bfa750
+        setEnroll(true);
         toast('Informações salvas com sucesso!');
-       
       } catch (err) {
         toast('Não foi possível salvar suas informações!');
       }

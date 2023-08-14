@@ -1,16 +1,13 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export default function PaymentPage() {
-    return (
-         <Containner>
-            <div className="card"> <p>em breve pagamento pelo cartão..</p> </div>
-        </Containner>
-            
+  return (
+    <Containner>
+      <div className="card"> <p>em breve pagamento pelo cartão..</p> </div>
+    </Containner>
         
-    )
+  );
 }
-
-
 
 const Containner = styled.div`
 width: 100%;
@@ -28,4 +25,4 @@ flex-direction: column;
   font-size: 20px;
   }
 }
-`
+`;

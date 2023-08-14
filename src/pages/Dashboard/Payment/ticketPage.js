@@ -1,51 +1,41 @@
-import styled from "styled-components";
-import React, { useState, useContext } from "react";
-import EnrollContext from "../../../contexts/enrolmentContext";
-
-
+import styled from 'styled-components';
+import React, { useState, useContext } from 'react';
+import EnrollContext from '../../../contexts/enrolmentContext';
 
 export default function TicketPage() {
+  const { ticket, setTicket, setpaymentPage } = useContext(EnrollContext);
 
-  const { ticket, setTicket, setpaymentPage } = useContext(EnrollContext)
-
-
-  const [choosedOnlineTicket, setChoosedOnlineTicket] = useState('')
-  const [choosedPresentialTicket, setChoosedPresentialticket] = useState(false)
-  const [ticketValue, setTicketValue] = useState(Number)
-  const [hotel, setHotel] = useState(false)
-
+  const [choosedOnlineTicket, setChoosedOnlineTicket] = useState('');
+  const [choosedPresentialTicket, setChoosedPresentialticket] = useState(false);
+  const [ticketValue, setTicketValue] = useState(Number);
+  const [hotel, setHotel] = useState(false);
 
   function presentialTicket() {
-    setChoosedPresentialticket(true)
-    setChoosedOnlineTicket(false)
-    setTicketValue(250)
-    setTicket('presential')
+    setChoosedPresentialticket(true);
+    setChoosedOnlineTicket(false);
+    setTicketValue(250);
+    setTicket('presential');
   }
 
   function onlineTicket() {
-    setChoosedPresentialticket(false)
-    setChoosedOnlineTicket(true)
-    setTicketValue(100)
-    setTicket('online')
-
+    setChoosedPresentialticket(false);
+    setChoosedOnlineTicket(true);
+    setTicketValue(100);
+    setTicket('online');
   }
 
   const ticketReservation = {
     ticket: ticket,
     price: ticketValue,
     hotel: hotel
-  }
+  };
 
   function checkTicket() {
-    console.log(ticketReservation)
-    setpaymentPage(true)
-
+    console.log(ticketReservation);
+    setpaymentPage(true);
   }
 
-
   return (
-
-
 
     <Containner>
       {<>
@@ -53,11 +43,11 @@ export default function TicketPage() {
 
         <div className="ticket1">
           <p>escolha o tipo de ingresso:</p>
-          <button onClick={() => { presentialTicket() }}>
+          <button onClick={() => { presentialTicket(); }}>
             presencial
             R$250
           </button>
-          <button onClick={() => { onlineTicket() }}>
+          <button onClick={() => { onlineTicket(); }}>
             online <br />
             R$100
           </button>
@@ -66,21 +56,20 @@ export default function TicketPage() {
           <>
             <div className="ticket2">
               <p>Otimo! Agora escolha sua modalidade de hospefagem</p>
-              <button onClick={() => { setTicketValue(250), setHotel(false) }}>sem hotel <br /> R$0</button>
-              <button onClick={() => { setTicketValue(600), setHotel(true) }}>com hotel <br /> R$350</button>
+              <button onClick={() => { setTicketValue(250), setHotel(false); }}>sem hotel <br /> R$0</button>
+              <button onClick={() => { setTicketValue(600), setHotel(true); }}>com hotel <br /> R$350</button>
               <p>fechado, o total ficou em R${ticketValue}. Agora é só confirmar:</p>
             </div>
-            <button onClick={() => { checkTicket() }}>
+            <button onClick={() => { checkTicket(); }}>
               reservar ingresso
             </button>
 
           </>
 
-
           : ''}
         {choosedOnlineTicket ? <>
           <p>fechado, o total ficou em R${ticketValue}. Agora é só confirmar:</p>
-          <button onClick={() => { checkTicket() }}>
+          <button onClick={() => { checkTicket(); }}>
             reservar ingresso
           </button>
         </> : ''}
@@ -89,10 +78,7 @@ export default function TicketPage() {
 
     </Containner>
 
-
-
-
-  )
+  );
 }
 const Containner = styled.div`
 width: 100%;
@@ -152,6 +138,5 @@ button{
 display: flex;
 
 
-`
-
+`;
 

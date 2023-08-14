@@ -1,20 +1,16 @@
-import PaymentPage from "./paymentPage"
-import TicketPage from "./ticketPage"
-import React,{useContext} from "react"
-import EnrollContext from "../../../contexts/enrolmentContext"
+import PaymentPage from './paymentPage';
+import TicketPage from './ticketPage';
+import React, { useContext } from 'react';
+import EnrollContext from '../../../contexts/enrolmentContext';
 
+export default function Pages() {
+  const { enroll, ticket, setTicket, paymentPage } = useContext(EnrollContext);
 
-
-export default function Pages(){
-    const {enroll,ticket,setTicket,paymentPage} = useContext(EnrollContext)
-
-
-
-    return(<>
+  return(<>
     
-        {
-            paymentPage ? <PaymentPage/> : <TicketPage/>
-          }
-    </>
-    )
+    {
+      paymentPage ? <PaymentPage/> : <TicketPage/>
+    }
+  </>
+  );
 }

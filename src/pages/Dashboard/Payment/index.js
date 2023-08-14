@@ -1,16 +1,12 @@
-import styled from "styled-components";
-import React, { useState,useContext } from "react";
-import EnrollContext from "../../../contexts/enrolmentContext";
-import TicketPage from "./ticketPage";
-import PaymentPage from "./paymentPage";
-import Pages from "./pages";
+import styled from 'styled-components';
+import React, { useState, useContext } from 'react';
+import EnrollContext from '../../../contexts/enrolmentContext';
+import TicketPage from './ticketPage';
+import PaymentPage from './paymentPage';
+import Pages from './pages';
 
 export default function Payment() {
-
-  const {enroll,ticket,setTicket,paymentPage} = useContext(EnrollContext)
-
-   
-
+  const { enroll, ticket, setTicket, paymentPage } = useContext(EnrollContext);
 
   return (
 
@@ -20,7 +16,7 @@ export default function Payment() {
       
     </Containner>
 
-  )
+  );
 }
 
 const Containner = styled.div`
@@ -31,4 +27,4 @@ align-items: center;
 .unauthorized{
   font-size: 20px;
 }
-`
+`;
