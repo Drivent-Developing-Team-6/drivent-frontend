@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import React, { useState, useContext } from 'react';
 import EnrollContext from '../../../contexts/enrolmentContext';
-import TicketPage from './ticketPage';
-import PaymentPage from './paymentPage';
 import Pages from './pages';
 
 export default function Payment() {

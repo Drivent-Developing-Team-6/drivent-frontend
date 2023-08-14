@@ -3,13 +3,14 @@ import React, { useState, useContext } from 'react';
 import EnrollContext from '../../../contexts/enrolmentContext';
 
 export default function TicketPage() {
-  const { ticket, setTicket, setpaymentPage } = useContext(EnrollContext);
-
-  const [choosedOnlineTicket, setChoosedOnlineTicket] = useState('');
-  const [choosedPresentialTicket, setChoosedPresentialticket] = useState(false);
-  const [ticketValue, setTicketValue] = useState(Number);
-  const [hotel, setHotel] = useState(false);
-
+  const { ticket, setTicket, 
+    setpaymentPage, 
+    choosedOnlineTicket, setChoosedOnlineTicket,
+    choosedPresentialTicket, setChoosedPresentialticket,
+    ticketValue, setTicketValue,
+    hotel, setHotel
+  } = useContext(EnrollContext);
+   
   function presentialTicket() {
     setChoosedPresentialticket(true);
     setChoosedOnlineTicket(false);
