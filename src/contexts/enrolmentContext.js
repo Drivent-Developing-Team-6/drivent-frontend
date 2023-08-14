@@ -5,18 +5,19 @@ import React, { useState } from "react"
 
 
 
-export const AuthContext = createContext({})
+ const EnrollContext = createContext({})
+ export default EnrollContext
 
-export const AuthProvider = ({children}) => {
+export function EnrollProvider ({children})  {
    
     const [ticket,setTicket]=useState('')
     const [enroll,setEnroll]=useState(false)
-    
+   const [paymentPage,setpaymentPage]=useState(false)
 
 
     return (
-        <AuthContext.Provider value={{ticket,setTicket,enroll,setEnroll}}>
+        <EnrollContext.Provider value={{ticket,setTicket,enroll,setEnroll,paymentPage,setpaymentPage}}>
             {children}
-        </AuthContext.Provider>
+        </EnrollContext.Provider>
     )
 }
